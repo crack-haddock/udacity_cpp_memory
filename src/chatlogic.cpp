@@ -31,7 +31,7 @@ ChatLogic::~ChatLogic()
 {
     //// STUDENT CODE
     ////
-
+    std::cout << "ChatLogic destructor" << std::endl;
     // delete chatbot instance
     delete _chatBot;
 
