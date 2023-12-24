@@ -44,7 +44,73 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
+ChatBot::ChatBot(const ChatBot& src) { // copy
+    std::cout << "COPY const" << std::endl;
 
+    delete _image;
+    delete _rootNode;
+    delete _chatLogic;
+
+    _image = src._image;
+    _rootNode = new GraphNode(0);
+    _chatLogic = new ChatLogic();
+
+    *_rootNode = *src._rootNode;
+    *_chatLogic = *src._chatLogic;
+}
+
+ChatBot& ChatBot::operator=(const ChatBot& src) { // copy assign
+    std::cout << "Copy ASSIGN const" << std::endl;
+
+    if (this == &src)
+        return *this;
+
+    _image = src._image;
+    _rootNode = new GraphNode(0);
+    _chatLogic = new ChatLogic();
+
+    *_rootNode = *src._rootNode;
+    *_chatLogic = *src._chatLogic;
+
+    return *this;
+}
+
+ChatBot::ChatBot(ChatBot&& src) { // move
+    std::cout << "Move const" << std::endl;
+
+    delete _image;
+    delete _rootNode;
+    delete _chatLogic;
+
+    _image = src._image;
+    _rootNode = src._rootNode;
+    _chatLogic = src._chatLogic;
+
+    src._image = NULL;
+    src._rootNode = nullptr;
+    src._chatLogic = nullptr;
+}
+
+ChatBot& ChatBot::operator=(ChatBot&& src) { // move assign
+    std::cout << "Move ASSIGN const" << std::endl;
+
+    if (this == &src)
+        return *this;
+
+    delete _image;
+    delete _rootNode;
+    delete _chatLogic;
+
+    _image = src._image;
+    _rootNode = src._rootNode;
+    _chatLogic = src._chatLogic;
+
+    src._image = NULL;
+    src._rootNode = nullptr;
+    src._chatLogic = nullptr;
+
+    return *this;
+}
 ////
 //// EOF STUDENT CODE
 
