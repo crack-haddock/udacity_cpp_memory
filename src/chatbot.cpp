@@ -2,7 +2,6 @@
 #include <random>
 #include <algorithm>
 #include <ctime>
-
 #include "chatlogic.h"
 #include "graphnode.h"
 #include "graphedge.h"
@@ -48,15 +47,15 @@ ChatBot::ChatBot(const ChatBot& src) { // copy
     std::cout << "COPY const" << std::endl;
 
     delete _image;
-    delete _rootNode;
-    delete _chatLogic;
+    //delete _rootNode;
+    //delete _chatLogic;
 
     _image = src._image;
-    _rootNode = new GraphNode(0);
-    _chatLogic = new ChatLogic();
+    _rootNode = src._rootNode; //new GraphNode(0);
+    _chatLogic = src._chatLogic; //new ChatLogic();
 
-    *_rootNode = *src._rootNode;
-    *_chatLogic = *src._chatLogic;
+    //*_rootNode = *src._rootNode;
+    //*_chatLogic = *src._chatLogic;
 }
 
 ChatBot& ChatBot::operator=(const ChatBot& src) { // copy assign
@@ -66,11 +65,11 @@ ChatBot& ChatBot::operator=(const ChatBot& src) { // copy assign
         return *this;
 
     _image = src._image;
-    _rootNode = new GraphNode(0);
-    _chatLogic = new ChatLogic();
+    _rootNode = src._rootNode; //new GraphNode(0);
+    _chatLogic = src._chatLogic; //new ChatLogic();
 
-    *_rootNode = *src._rootNode;
-    *_chatLogic = *src._chatLogic;
+    //*_rootNode = *src._rootNode;
+    //*_chatLogic = *src._chatLogic;
 
     return *this;
 }
@@ -79,8 +78,8 @@ ChatBot::ChatBot(ChatBot&& src) { // move
     std::cout << "Move const" << std::endl;
 
     delete _image;
-    delete _rootNode;
-    delete _chatLogic;
+    //delete _rootNode;
+    //delete _chatLogic;
 
     _image = src._image;
     _rootNode = src._rootNode;
@@ -98,8 +97,8 @@ ChatBot& ChatBot::operator=(ChatBot&& src) { // move assign
         return *this;
 
     delete _image;
-    delete _rootNode;
-    delete _chatLogic;
+    //delete _rootNode;
+    //delete _chatLogic;
 
     _image = src._image;
     _rootNode = src._rootNode;

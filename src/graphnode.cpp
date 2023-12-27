@@ -1,3 +1,4 @@
+#include <iostream>
 #include "graphedge.h"
 #include "graphnode.h"
 
@@ -8,6 +9,7 @@ GraphNode::GraphNode(int id)
 
 GraphNode::~GraphNode()
 {
+    std::cout << "graphnode desctr" << std::endl;
     //// STUDENT CODE
     ////
 

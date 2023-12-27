@@ -1,9 +1,14 @@
+#include <iostream>
 #include "graphnode.h"
 #include "graphedge.h"
 
 GraphEdge::GraphEdge(int id)
 {
     _id = id;
+}
+
+GraphEdge::~GraphEdge() {
+    //std::cout << "graphEDGE desctr" << std::endl;
 }
 
 void GraphEdge::SetChildNode(GraphNode *childNode)
