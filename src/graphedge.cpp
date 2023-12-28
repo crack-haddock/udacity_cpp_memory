@@ -8,7 +8,7 @@ GraphEdge::GraphEdge(int id)
 }
 
 GraphEdge::~GraphEdge() {
-    //std::cout << "graphEDGE desctr" << std::endl;
+    std::cout << "graphEDGE desctr" << std::endl;
 }
 
 void GraphEdge::SetChildNode(GraphNode *childNode)
