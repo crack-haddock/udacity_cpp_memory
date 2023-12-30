@@ -16,10 +16,10 @@ ChatLogic::ChatLogic()
     ////
 
     // create instance of chatbot
-    _chatBot = new ChatBot("../images/chatbot.png");
+    //_chatBot = new ChatBot("../images/chatbot.png");
 
     // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    _chatBot->SetChatLogicHandle(this);
+    //_chatBot->SetChatLogicHandle(this);
 
     ////
     //// EOF STUDENT CODE
@@ -29,9 +29,9 @@ ChatLogic::~ChatLogic()
 {
     //// STUDENT CODE
     ////
-    std::cout << "ChatLogic destructor [START]" << std::endl;
+    //std::cout << "ChatLogic destructor [START]" << std::endl;
     // delete chatbot instance
-    delete _chatBot;
+    //delete _chatBot;
 
     // delete all nodes
     /*for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
@@ -45,7 +45,7 @@ ChatLogic::~ChatLogic()
         delete *it;
     }*/
 
-    std::cout << "ChatLogic destructor [END]" << std::endl;
+    //std::cout << "ChatLogic destructor [END]" << std::endl;
     ////
     //// EOF STUDENT CODE
 }
@@ -226,9 +226,25 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
         }
     }
 
+    // replace current instance of chatbot with a variable created HERE
+    // them move it into rootnode
+    // create instance of chatbot
+
+    // ok, with this first line the program 'worked' but it did not call the move constructor 
+    //auto chatBot = std::make_unique<ChatBot>("../images/chatbot.png");
+    // actually need to create a regular stack obj
+    ChatBot chatBot("../images/chatbot.png");
+    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
+    chatBot.SetChatLogicHandle(this);
+
+    //_chatBot = chatBot.get();
+
     // add chatbot to graph root node
-    _chatBot->SetRootNode(rootNode);
-    rootNode->MoveChatbotHere(_chatBot);
+    chatBot.SetRootNode(rootNode);
+
+    // I didn't understand that the std:: move would work on the unique ptr itself, not the underlying chatbot obj. 
+    // not sure the course really explained this well, or I just missed that part
+    rootNode->MoveChatbotHere(std::move(chatBot));
     
     ////
     //// EOF STUDENT CODE
